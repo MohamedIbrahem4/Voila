@@ -1,0 +1,163 @@
+<section>
+  <!-- slider -->
+  <app-slider></app-slider>
+  <div class="big-box">
+    <!-- section 1 -->
+    <div class="who-we-are" [class.arabicrtl]="translate.isArabic">
+      <div class="section-1 container">
+        <div
+          class="small-box"
+          data-aos="fade-right"
+          data-aos-easing="ease-in-sine"
+          data-aos-duration="1000"
+        >
+          <h1 class="move-up-bootom">
+            {{ "home.s1.discoverVoila" | translate }}
+          </h1>
+          <div>
+            <h2>
+              {{ "home.s1.h1" | translate }}
+              <br />
+              {{ "home.s1.h2" | translate }}
+              <br />
+              {{ "home.s1.h3" | translate }}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- carsouel -->
+      <div class="carsouel"           data-aos="fade-up"
+      data-aos-easing="linear"
+      data-aos-duration="1000"
+      data-aos-offset="100"
+
+>
+        <p-carousel [value]="products" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions" [circular]="true" autoplayInterval="6000">
+          <ng-template let-product pTemplate="item">
+            <div class="product-card">
+              <!-- Best Seller Badge -->
+              <div *ngIf="product.isBestSeller" class="best-seller-badge">BEST SELLER</div>
+
+      <!-- Image Container with Slide Animation -->
+      <div class="image-slider-container">
+        <div class="image-wrapper">
+          <!-- Default Image -->
+          <img [src]="product.image"
+               [alt]="product.name"
+               class="product-image default-image">
+
+          <!-- Hover Image -->
+          <img [src]="product.hoverImage"
+               [alt]="product.name"
+               class="product-image hover-image">
+        </div>
+      </div>
+
+              <!-- Product Details -->
+              <div class="product-info">
+                <h3 class="product-name"   pTooltip="{{ product.name.length > 20 ? (product.name | translate) : '' }}"                  >  {{ getTruncatedTitle(product.name | translate) }}
+                </h3>
+
+                <!-- Rating -->
+                <p-rating [(ngModel)]="product.rating" [readonly]="true"
+                          styleClass="product-rating"></p-rating>
+
+                <!-- Price -->
+                <div class="price-container">
+                  <span class="current-price">{{ product.price | currency }}</span>
+                  <span *ngIf="product.oldPrice" class="old-price">{{ product.oldPrice | currency }}</span>
+                </div>
+
+                <!-- Add to Cart -->
+                <button pButton label="Add to Cart" icon="pi pi-shopping-cart"
+                        class=" add-to-cart-btn"
+                        (click)="addToCart(product)"></button>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+
+       </div>
+    <!-- section 3 -->
+    <div class="section-3 ">
+      <div class="content-1" >
+      <div class="flex flex-col gap-3 items-center "
+      data-aos="fade-up"
+      data-aos-easing="ease-in-sine"
+      data-aos-duration="1000"
+      data-aos-offset="100"
+      >
+                <span class="move-up-bootom" [class.span-ar]="translate.isArabic">{{'home.s3.title'|translate}}</span>
+        <div class="title w-2/4 max-sm:w-full">
+          <h2 class="indent-3 max-sm:indent-0">{{'home.s3.subtitle'|translate}}</h2>
+        </div>
+
+      </div>
+        <div class="projects"
+        >
+          @for (item of category; track $index) {
+  <div class="img-box" data-aos="fade-up"
+  data-aos-easing="ease-in-sine"
+  data-aos-duration="1000"
+  data-aos-offset="100">
+            <img [src]="item.src" alt="description" loading="lazy" class="w-full"/>
+            <div class="content-box" >
+              <h2 (click)="Categorydetails(item.name)" class=" text-white text-5xl font-bold text-shadow-md">
+                <a >
+                  {{ item.title |translate}}
+                </a>
+              </h2>
+              <p>{{ item.p }}</p>
+            </div>
+          </div>
+          }
+
+        </div>
+      </div>
+    </div>
+    <!-- section 2  -->
+    <div class="section-2">
+      <!-- left box -->
+      <div class="left-box container w-4/6 max-sm:w-full shadow-lg rounded text-white">
+        <div class="image w-2/5 max-sm:w-full">
+          <img
+            src="/imgs/home/medium-shot-woman-using-facial-cream.jpg"
+            alt=""
+          />
+        </div>
+        <div class="content w-3/5 max-sm:w-full ">
+          <h1 class="text-5xl uppercase text-shadow-lg">
+            {{ "home.s2.head" | translate }}
+          </h1>
+          <span class="text-3xl indent-2 text-shadow-md">
+            {{ "home.s2.body" | translate }}
+          </span>
+        </div>
+      </div>
+      <!-- right box -->
+       @if(!isMobile)
+       {
+              <div class="right-box w-2/6">
+        <img
+          class="img1"
+          data-aos="fade-down-right"
+          data-aos-duration="1500"
+          src="/imgs/home/11_01.png"
+          alt=""
+        />
+        <img
+          class="img2"
+          data-aos="fade-up-left"
+          data-aos-duration="1500"
+          src="/imgs/home/16_01.png"
+          alt=""
+        />
+      </div>
+       }
+
+    </div>
+    <!-- section 4 -->
+     <div></div>
+   </div>
+</section>

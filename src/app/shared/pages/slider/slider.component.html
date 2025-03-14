@@ -1,0 +1,53 @@
+<div class="slider-container">
+  @for (slide of slides; track $index;) {
+    <div
+      class="slider"
+      [@slideAnimation]="currentSlide === $index ? 'active' : 'inactive'"
+    >
+      <img
+        (click)="$event.stopPropagation()"
+        [src]="slide.img"
+        alt="Slide {{ $index + 1 }}"
+        class="slide-image"
+        [class.flip]="translateservice.isArabic"
+      />
+
+      <div class="slide-content" (click)="$event.stopPropagation()">
+        <div class="left-box">
+          <div class="hr"></div>
+          <div class="icon"> <a href="https://www.facebook.com/LaQuintaGroupEgy" target="_blank"><i class="pi pi-facebook"></i></a>
+          </div>
+          <div class="icon"> <a href="https://instagram.com/la_quinta_group_egy?igshid=MzRlODBiNWFlZA==" target="_blank"><i class="pi pi-instagram"></i></a>
+
+            </div>
+          </div>
+        <div [class]="translateservice.isArabic?'content-1 w-5/5':'content-1 w-4/5'">
+          <div class="box" >
+
+            <span [class.span2]="translateservice.isArabic"
+              [@fadeInRight]="{ value: animationState, params: firstText }">
+              {{ slide.description1 | translate }}
+            </span>
+            <span [class.span2]="translateservice.isArabic"
+              [@fadeInRight]="{ value: animationState, params: secondText }">
+              {{ slide.description2 | translate }}
+            </span>
+
+            
+
+          </div>
+          <div
+            class="button"
+
+            [@fadeInRight]="{ value: animationState, params: btnAnimation }">
+
+            <button type="button" class="btn btn-outline-warning flex items-center gap-1" [class.btn-arabic]="translateservice.isArabic">
+              {{slide.btn | translate}}
+              <i [class]="translateservice.isArabic?'icon pi pi-arrow-left':'icon pi pi-arrow-right'" style="font-size: .8rem"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

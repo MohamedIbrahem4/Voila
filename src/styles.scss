@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+
+@use "primeicons/primeicons.css";
+
+@import 'aos/dist/aos.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+body {
+  background: var(--surface-ground);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+  font-family: "Lora", serif;
+  direction: ltr;
+
+}
+
+/* RTL support */
+
+html[dir="rtl"] body {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: 'Cairo', sans-serif;
+
+}
+.move-up-bootom {
+	animation: move-up-bootom 3s linear infinite both;
+}
+ @keyframes move-up-bootom {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+

@@ -1,0 +1,85 @@
+<footer>
+  <div class="box ">
+  <div class="up-box">
+  <div class="img"><img src="/imgs/whitelogo.png" alt="img"></div>
+  <div class="content-1">
+    <h2 [class.ar]="translateService.isArabic">{{'footer.companyInfo' |translate}}</h2>
+    <div class="elements">
+      <ul>
+        <li>
+          <a [routerLink]="['/About-Us']" routerLinkActive="router-link-active">About Us</a>
+        </li>
+        <li>
+          <a [routerLink]="['/Contact']" routerLinkActive="router-link-active">Contact Us</a>
+        </li>
+        <li>
+          <a [routerLink]="['/Projects']" routerLinkActive="router-link-active">Projects</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="content-1 tab-resbosive-1">
+    <h2 [class.ar]="translateService.isArabic">{{'footer.followUs' |translate}}</h2>
+    <div class="elements">
+      <ul>
+        <li>
+          <a href="https://www.facebook.com/LaQuintaGroupEgy" target="_blank">{{'footer.facebook' |translate}}</a>
+        </li>
+        <li>
+          <a href="https://instagram.com/la_quinta_group_egy?igshid=MzRlODBiNWFlZA==" target="_blank">{{'footer.instagram' |translate}}</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="content-1 tab-resbosive-2">
+    <h2 [class.ar]="translateService.isArabic">{{'footer.getInTouch' |translate}}</h2>
+    <div class="box">
+     <span>
+      {{'footer.Adress' |translate}}
+    </span>
+    <div class="box-3" >
+      <a href="tel:+201208208534">
+        <div class="cont-2">
+          <i class="pi pi-phone"></i>
+          <span>(+2) 0120 8208 534</span>
+        </div>
+      </a>
+
+    </div>
+    </div>
+
+  </div>
+</div>
+<div class="hr"></div>
+<div class="bottom-box">
+  <div>
+    <p>
+      © 2025   –
+      <a href="">VOILA</a>
+      {{'footer.copyright' |translate}}
+    </p>
+  </div>
+  <div>
+      <div class="flex items-center gap-8">
+        @for ( selectedlang of Lang; track $index) {
+          <div class="flex items-center gap-2 border p-1 rounded bg-[#646464] transition-all duration-300 hover:bg-[#444444] hover:text-black hover:border-black cursor-pointer" (click)="onLanguageChange(selectedlang.lang)">
+              <img
+        [src]="'https://flagcdn.com/w40/' + selectedlang.code.toLowerCase() + '.png'"
+        width="20"
+        height="15"
+      />
+      <span class="text-white">{{ selectedlang.name }}</span>
+          </div>
+
+
+        }
+    </div>
+
+
+
+  </div>
+</div>
+  </div>
+</footer>

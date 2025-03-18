@@ -9,6 +9,10 @@ export const routes: Routes = [
         path: '',
         loadChildren: () => import('./components/home/home.routes').then(m => m.homeRoutes)
       },
+      {
+        path: 'products',
+        loadChildren: () => import('./components/products/products.routes').then(m => m.productRoutes)
+      },
     ]
   },
 ];

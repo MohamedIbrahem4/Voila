@@ -10,6 +10,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -25,6 +26,8 @@ import { TooltipModule } from 'primeng/tooltip';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements OnInit {
+  private   route =inject(Router);
+
   protected translate = inject(CustomTranslateService);
   protected homeservices = inject(HomeService);
   protected isMobile=false;
@@ -73,6 +76,10 @@ export class HomePageComponent implements OnInit {
   getTruncatedTitle(title: string): string {
     if (!title) return ''; // Handle empty title
     return title.length > 20 ? title.substring(0, 20) + '...' : title;
+  }
+  openProductDetails()
+  {
+    this.route.navigate(['/products/productdetails'])
   }
 
 }

@@ -5,7 +5,17 @@
     "HAIR": "Hair",
     "BODY": "Body",
     "LOGIN": "Login",
-    "Offers":"Offers"
+    "Offers":"Offers",
+    "sale":"Sale",
+    "Menu":"Menu",
+    "ChooseLang":"Choose Language",
+    "En":"English",
+    "Ar":"Arabic",
+    "Settings":"Settings",
+    "Dashboard":"Dashboard"
+
+
+
 
   },
   "slider":{

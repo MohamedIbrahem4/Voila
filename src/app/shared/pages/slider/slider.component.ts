@@ -25,12 +25,12 @@ import { CustomTranslateService } from '../../services/custom-translate.service'
     trigger('slideAnimation', [
       state(
         'inactive',
-        style({ display: 'hidden', opacity: 0, transform: 'translateY(0%) ' })
+        style({ display: 'none', opacity: 0, transform: 'translateY(0%) ' })
       ),
       state(
         'active',
         style({
-          display: 'visible',
+          display: 'flex',
           opacity: 1,
           transform: 'translateX(0) scale(1)',
         })
@@ -39,7 +39,7 @@ import { CustomTranslateService } from '../../services/custom-translate.service'
       transition('inactive => active', [
         // Slide in and fade in
 
-        style({ display: 'visible', opacity: 0 }), // Make it visible but transparent at start
+        style({ display: 'flex', opacity: 0 }), // Make it visible but transparent at start
         animate(
           '1500ms ease-in',
           style({ opacity: 1, transform: 'translate(0%) ' })
@@ -54,7 +54,7 @@ import { CustomTranslateService } from '../../services/custom-translate.service'
           '3000ms ease-out',
           style({ opacity: 0, transform: 'translate(0%) ' })
         ),
-        style({ display: 'hidden' }), // Set display to none after fade-out
+        style({ display: 'none' }), // Set display to none after fade-out
       ]),
     ]),
     trigger('fadeInLeft', [
@@ -163,8 +163,6 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   nextSlide() {
-    console.log('Before Change:', this.currentSlide);
-
     this.currentSlide = (this.currentSlide + 1) % this.slides.length;
     this.cdr.detectChanges(); // Forces Angular to update
 
@@ -173,11 +171,9 @@ export class SliderComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.animationState = this.currentSlide + Math.random(); // Ensure a unique number
-      console.log('Animation State:', this.animationState); // Log after update
       this.cdr.detectChanges();
 
     }, 10); // Small delay ensures Angular detects the change
-    console.log('After Change:', this.currentSlide);
 
   }
   callUs() {

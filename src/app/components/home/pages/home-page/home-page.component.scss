@@ -369,6 +369,22 @@ section {
         padding: 60px 0px 0px 10px;
         padding-inline-start: 10px;
         padding-inline-end: 0px;
+        .section-1{
+          .small-box{
+                      h2{
+            font-size: 2.5em;
+
+          }
+
+          }
+        }
+
+      }
+      .who-we-are.arabicrtl {
+        &::before {
+          left: 0;
+          background-size: cover;
+        }
 
       }
       .section-3{
@@ -376,13 +392,20 @@ section {
       .content-1{
         .title{
           padding: 0px 29px;
+          h2{
+            font-size: 2em;
+          }
         }
         .projects{
           flex-direction: column;
           padding: 0px 20px;
           .img-box{
             width: 100%;
+            .content-box{
+              padding: 30px 35px;
+            }
           }
+
         }
       }
       }

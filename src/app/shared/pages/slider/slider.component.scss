@@ -75,7 +75,7 @@
           padding-top: 10px;
           span{
           text-transform: uppercase;
-          font-size: 3rem;
+          font-size: 3em;
           font-weight: bold;
           color: #ffff;
           text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -83,7 +83,7 @@
         }
         .span2 {
           text-transform: uppercase;
-          font-size: 3.2rem;
+          font-size: 3.2em;
           font-weight: bold;
           color: #ffff;
           text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -198,11 +198,11 @@
 
 @media (max-width: 650px) {
   .slider-container{
-    font-size: 48%;
+    font-size:70%;
     height: 90vh;
     .slider{
       .slide-content{
-        inset-inline-start: 25px;
+        inset-inline-start: 15px;
         gap: 15px;
         .left-box{
           .icon{

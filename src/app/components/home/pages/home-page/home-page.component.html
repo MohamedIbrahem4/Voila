@@ -35,7 +35,7 @@
 >
         <p-carousel [value]="products" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions" [circular]="true" autoplayInterval="6000">
           <ng-template let-product pTemplate="item">
-            <div class="product-card">
+            <div class="product-card cursor-pointer" (click)="openProductDetails()">
               <!-- Best Seller Badge -->
               <div *ngIf="product.isBestSeller" class="best-seller-badge">BEST SELLER</div>
 

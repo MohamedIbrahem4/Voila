@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, inject, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Noir from '../../public/styles/app-theme';
@@ -18,7 +18,10 @@ export function TranslatePreload(customTranslateService: CustomTranslateService)
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes ,withInMemoryScrolling({
+    scrollPositionRestoration: 'top', // Reset scroll to top on navigation
+    anchorScrolling: 'enabled',
+  }),),
     provideZoneChangeDetection({ eventCoalescing: true }), // Optimize zone change detection
     provideAnimationsAsync(), // Enable asynchronous animations
     provideAnimationsAsync(),

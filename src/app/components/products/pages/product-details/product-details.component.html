@@ -1,8 +1,14 @@
 <section class="product-container w-full">
-  <div class="product-images w-2/6 ">
-    <div class="image-wrapper" >
-      <img [src]="mainImage" [alt]="product.name" class="main-image" appImageZoom [zoomFactor]="2"     [@slideFade]="animationState"
-      >
+  <div class="product-images w-2/6">
+    <div class="image-wrapper">
+      <img
+        [src]="mainImage"
+        [alt]="product.name"
+        class="main-image"
+        appImageZoom
+        [zoomFactor]="2"
+        [@slideFade]="animationState"
+      />
     </div>
     <div class="thumbnail-wrapper">
       <div class="thumbnail-container" #thumbnailContainer>
@@ -11,19 +17,19 @@
           [src]="thumbnail"
           alt="Product thumbnail"
           class="thumbnail"
-          (click)="changeImage(thumbnail,$index)"
-          [class.active-thumbnail]="thumbnail === mainImage">
+          (click)="changeImage(thumbnail, $index)"
+          [class.active-thumbnail]="thumbnail === mainImage"
+        />
 
         }
       </div>
     </div>
   </div>
 
-
   <div class="product-details w-3/6">
     <h1 class="product-title">{{ product.name }}</h1>
     <!-- rating -->
-    <p-rating [(ngModel)]="ratingvalue" [readonly]="true" class="w-2/4"/>
+    <p-rating [(ngModel)]="ratingvalue" [readonly]="true" class="w-2/4" />
 
     <p class="product-price">{{ product.price | currency }}</p>
 
@@ -34,34 +40,33 @@
       <div class="font-bold">Size :</div>
       <div>200 Ml</div>
     </div>
-   <div class="quantity-selector w-32">
-      <!-- <button (click)="decrease()" [disabled]="quantity === 1">-</button>
-      <input type="number" [(ngModel)]="quantity" min="1" max="10">
-      <button (click)="increase()" [disabled]="quantity === 10">+</button> -->
+    <div class="quantity-selector w-32">
       <div class="font-bold">Quantity :</div>
 
-      <p-inputnumber [(ngModel)]="productQuantity" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"  [inputStyle]="{ width: '3rem' }">
+      <p-inputnumber
+        [(ngModel)]="productQuantity"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        inputId="horizontal"
+        [inputStyle]="{ width: '3rem' }"
+      >
         <ng-template #incrementbuttonicon>
-            <span class="pi pi-plus"></span>
+          <span class="pi pi-plus"></span>
         </ng-template>
         <ng-template #decrementbuttonicon>
-            <span class="pi pi-minus"></span>
+          <span class="pi pi-minus"></span>
         </ng-template>
-    </p-inputnumber>
-
+      </p-inputnumber>
     </div>
-
-
-    <!-- <app-ingredients-list [ingredients]="product.ingredients"></app-ingredients-list> -->
-
-   <div class=" flex  flex-col gap-4 ">
-        <button class="cta-button" (click)="addToCart()">
-      Add to Cart
-    </button>
-    <button class="buy-button" (click)="addToCart()">
-      Buy it now
-    </button>
-
-   </div>
+    <div class="flex flex-col gap-4">
+      <button
+        class="cta-button"
+        [ngClass]="{ 'shake-horizontal': isShaking }"
+        (click)="addToCart()"
+      >
+        Add to Cart
+      </button>
+      <button class="buy-button" (click)="addToCart()">Buy it now</button>
+    </div>
   </div>
 </section>

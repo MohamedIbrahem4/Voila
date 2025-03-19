@@ -71,7 +71,7 @@ export class HomePageComponent implements OnInit {
   }
   addToCart(product: any) {
     // Implement cart logic
-    console.log('Added to cart:', product);
+    this.route.navigate(['/products/productdetails'])
   }
   getTruncatedTitle(title: string): string {
     if (!title) return ''; // Handle empty title

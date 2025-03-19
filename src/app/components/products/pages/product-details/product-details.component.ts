@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { Product } from '../../types/product';
@@ -33,11 +33,16 @@ import { animate, style, transition, trigger } from '@angular/animations';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit ,OnDestroy  {
   @ViewChild('thumbnailContainer') thumbnailContainer!: ElementRef<HTMLElement>;
+
+  private intervalId: any;
+
   protected   isAnimating: boolean = false;
   protected productQuantity: number = 1;
   protected ratingvalue:number=3.5;
+  protected   isShaking = false;
+
   currentIndex = 0;
   animationState = 0;
 
@@ -70,9 +75,24 @@ export class ProductDetailsComponent implements OnInit {
     if (this.product?.images?.length) {
       this.mainImage = this.product.images[0];
     }
+
+    // for add cart animation
+    this.intervalId = setInterval(() => {
+      this.isShaking = true;
+
+      setTimeout(() => {
+        this.isShaking = false;
+      }, 1000); // Shake duration (adjust if needed)
+    }, 7000); // Repeat every 5 seconds
+
   }
 
-
+  ngOnDestroy(): void {
+    if(this.intervalId)
+    {
+      clearInterval(this.intervalId);
+    }
+  }
 
   addToCart() {
     // Implement cart logic

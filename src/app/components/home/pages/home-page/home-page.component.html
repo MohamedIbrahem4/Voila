@@ -37,7 +37,7 @@
           <ng-template let-product pTemplate="item">
             <div class="product-card cursor-pointer" (click)="openProductDetails(product.id)">
               <!-- Best Seller Badge -->
-              <div *ngIf="product.isBestSeller" class="best-seller-badge">BEST SELLER</div>
+              <div   class="best-seller-badge">{{'product.bestSeller'|translate}}</div>
 
       <!-- Image Container with Slide Animation -->
       <div class="image-slider-container">
@@ -56,7 +56,7 @@
 
               <!-- Product Details -->
               <div class="product-info">
-                <h3 class="product-name"  >  {{ getTruncatedTitle(product.nameEn ) }}
+                <h3 class="product-name"  >  {{ getTruncatedTitle(isArabic?product.nameAr:product.nameEn) }}
                 </h3>
 
                 <!-- Rating -->
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Add to Cart -->
-                <button pButton label="Add to Cart" icon="pi pi-shopping-cart"
+                <button pButton [label]="'product.addToCart'|translate" icon="pi pi-shopping-cart"
                         class=" add-to-cart-btn"
                         (click)="addToCart(product)"></button>
               </div>

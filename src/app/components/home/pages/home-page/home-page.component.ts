@@ -32,6 +32,7 @@ export class HomePageComponent implements OnInit {
   private   route =inject(Router);
   private productservices = inject(ProductService);
   private products=signal<Product[]>([]);
+  private customtranslate = inject(CustomTranslateService);
 
   protected translate = inject(CustomTranslateService);
   protected homeservices = inject(HomeService);
@@ -39,6 +40,7 @@ export class HomePageComponent implements OnInit {
   protected category: any[] = [];
   protected hoveredProduct: number | null = null;
   protected bestProduct=computed(()=>this.products());
+  protected isArabic: boolean = false;
 
 
   protected responsiveOptions = [
@@ -61,6 +63,16 @@ export class HomePageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.isArabic = this.customtranslate.isArabic;
+this.customtranslate.languageChange$.subscribe(Ar=>{
+  if(Ar==='ar')
+  {
+    this.isArabic=true;
+  }else
+  this.isArabic=false;
+
+})
+
     Aos.init();
     this.category=this.homeservices.categories;
     this.isMobile = window.innerWidth < 768;

@@ -10,7 +10,6 @@ section {
         position: relative;
         margin: 1rem;
         padding: 1.5rem;
-        // border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         transition: transform 0.3s ease;
         background: white;
@@ -124,7 +123,7 @@ section {
     }
     .who-we-are {
       padding: 130px 0px 0px;
-      background-image: url("/imgs/home/h5_img8.png");
+      background-image: url("imgs/home/h5_img8.png");
       background-repeat: no-repeat;
       background-position: top left;
       position: relative;
@@ -350,11 +349,9 @@ section {
       gap: 70px;
       .carsouel{
         font-size: .8rem !important;
-        padding: 0pc;
+        padding: 0px;
         .product-card{
           padding: 1.8rem 1.5rem 0rem;
-          margin: .5rem;
-          max-height: 360px;
           .image-slider-container{
             height: 180px;
           }

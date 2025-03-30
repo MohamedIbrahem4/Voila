@@ -25,28 +25,6 @@
       <span>{{ "navbar.LOGIN" | translate }}</span>
     </div>
     <div>
-      <!-- <p-select [options]="Lang" [(ngModel)]="selectedLang"  optionLabel="name"    (onChange)="onLanguageChange($event)"    >
-      <ng-template #selectedItem let-selectedOption>
-        <div class="flex items-center gap-2" *ngIf="selectedOption">
-            <img
-            [src]="'https://flagcdn.com/w40/' + selectedOption.code.toLowerCase() + '.png'"
-            width="20"
-            height="15"
-            />
-        </div>
-        <ng-template let-lang #item>
-          <div class="flex items-center gap-2">
-              <img
-              [src]="'https://flagcdn.com/w40/' + lang.code.toLowerCase() + '.png'"
-              width="20"
-        height="15"
-              />
-              <div>{{ lang.name }}</div>
-          </div>
-      </ng-template>
-
-    </ng-template>
-    </p-select> -->
     </div>
   </div>
 </section>
@@ -221,12 +199,16 @@
   <!-- home -->
   <div class="flex flex-col items-center text-[#6e9a53] cursor-pointer"[routerLink]="['/']">
     <i class="pi pi-home" style="font-size: 1.2rem"></i>
-    <div class="text-md font-bold " >Home</div>
+    <div class="text-md font-bold " >{{
+      "navbar.Home" | translate
+    }}</div>
   </div>
     <!-- Menu -->
   <div class="flex flex-col items-center text-[#6e9a53] cursor-pointer"(click)="visible = true">
     <i class="pi pi-align-justify" style="font-size: 1.2rem"></i>
-    <div class="text-md font-bold " >Menu</div>
+    <div class="text-md font-bold " >{{
+      "navbar.Menu" | translate
+    }}</div>
   </div>
 
 </div>

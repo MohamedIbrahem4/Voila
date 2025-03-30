@@ -36,6 +36,7 @@ private productservices=inject(ProductService);
 private customtranslate = inject(CustomTranslateService);
 private router = inject(ActivatedRoute);
 private categoryID:string='';
+
  protected products = signal<Product[]>([]);
  protected visibleProducts: Product[] = [];
  protected itemsPerPage = 10;

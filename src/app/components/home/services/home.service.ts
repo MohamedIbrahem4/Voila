@@ -9,19 +9,19 @@ export class HomeService {
 
   categories:any[]=[
     {
-      src:'/imgs/home/skincare.jpeg',
+      src:'imgs/home/skincare.jpeg',
       title:'home.skincare',
       route:'/products/skin'
 
     },
     {
-      src:'/imgs/home/haircare.jpeg',
+      src:'imgs/home/haircare.jpeg',
       title:'home.HairCare',
       route:'/products/hair'
 
     },
     {
-      src:'/imgs/home/bodycare.jpg',
+      src:'imgs/home/bodycare.jpg',
       title:'home.BodyCare',
       route:'/products/body'
 

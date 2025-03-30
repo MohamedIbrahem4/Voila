@@ -1,1 +1,62 @@
-<p>products-page works!</p>
+<section>
+  <div class="product-container">
+  <div class="grid">
+    <div class="col-12 ">
+       @for (product of products(); track $index) {
+    <p-card class="product-card cursor-pointer" [routerLink]="['/productdetails/',product.id]" routerLinkActive="router-link-active" >
+        <ng-template pTemplate="header">
+          <div class="image-container">
+            <img [src]="product.images[0]" [alt]="product.nameEn" class="product-image"/>
+            <div class="badges">
+              <p-tag *ngIf="product.oldPrice" [value]="'navbar.sale'|translate" severity="danger"></p-tag>
+              <p-tag *ngIf="!product.inStock" value="Out of Stock" severity="danger"></p-tag>
+            </div>
+          </div>
+        </ng-template>
+        <div class="flex flex-col gap-1  w-full items-center">
+        <h3 class="product-title font-bold">        @if(isArabic) {
+          {{ product.nameAr }}
+          }@else {
+          {{ product.nameEn }}
+          }
+  </h3>
+
+        <div class="price-container">
+          <span class="current-price">{{ product.price | currency:'EGP ' }}</span>
+          <span *ngIf="product.oldPrice" class="old-price">{{ product.oldPrice | currency:'EGP ' }}</span>
+        </div>
+
+        <div class="flex   gap-2">
+          <p-rating  [(ngModel)]="product.rating" [readonly]="true" styleClass="product-rating" ></p-rating>
+          <span class="rating-value">({{ product.rating }})</span>
+        </div>
+
+        </div>
+
+        <ng-template pTemplate="footer">
+          <div class="card-footer">
+                          <!-- Add to Cart -->
+                          <button pButton [label]="'product.addToCart'|translate" icon="pi pi-shopping-cart"
+                          class=" add-to-cart-btn"
+                          (click)="addToCart(product)"></button>
+
+          </div>
+        </ng-template>
+      </p-card>
+
+   }
+    </div>
+  </div>
+
+
+
+  <div class="pagination" *ngIf="showLoadMore">
+    <p-button
+      label="Show More Products"
+      icon="pi pi-chevron-down"
+      class="load-more-btn">
+    </p-button>
+  </div>
+</div>
+
+</section>

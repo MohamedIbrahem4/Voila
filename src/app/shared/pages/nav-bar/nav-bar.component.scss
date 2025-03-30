@@ -1,9 +1,16 @@
 section{
   position: absolute;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.1)  ;
   max-height: 4em;
   overflow: visible;
+  &.home-nav {
+    background-color: rgba(0, 0, 0, 0.1)  ;
+
+  }
+  &.other-page-nav {
+    background-color: #797979; // Other pages color
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3) // Modern bottom shadow
+  }
   .cat{
     cursor: pointer;
     color: #ffffff;

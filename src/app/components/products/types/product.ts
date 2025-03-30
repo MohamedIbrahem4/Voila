@@ -1,17 +1,24 @@
 export interface Product {
   id: string;
-  name: string;
+  nameEn: string;
+  nameAr: string;
+  category:string;
   price: number;
-  description: string;
+  oldPrice?:number;
+  descriptionEn: string;
+  descriptionAr: string;
   images: string[];
-  benefits: string[];
-  ingredients: string[];
-  size?:number;
-  rating?:number;
+  ingredientsEn: string;
+  ingredientsAr: string;
+  usageEn:string;
+  usageAr:string;
+  size:number;
+  rating:number;
   inStock?:boolean;
   review:Review[];
 }
 export interface Review {
+  productID:number;
   rating: number;
   comment: string;
   author: string;

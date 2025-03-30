@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   HostListener,
   inject,
@@ -17,6 +18,8 @@ import { AvatarModule } from 'primeng/avatar';
 import { TagModule } from 'primeng/tag';
 import { StyleClass } from 'primeng/styleclass';
 import { Ripple } from 'primeng/ripple';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -32,6 +35,7 @@ import { Ripple } from 'primeng/ripple';
     TagModule,
     Ripple,
     StyleClass,
+    RouterLink
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
@@ -39,9 +43,13 @@ import { Ripple } from 'primeng/ripple';
 export class NavBarComponent implements OnInit {
   @ViewChild('drawerRef') drawerRef!: Drawer;
 
-  protected translateService = inject(CustomTranslateService);
   private lastScrollTop = 0;
+  private activatedRoute=inject(ActivatedRoute);
+  private cd=inject( ChangeDetectorRef);
 
+  protected router=inject(Router);
+
+  protected translateService = inject(CustomTranslateService);
   protected Lang: any[] = [];
   protected selectedLang: any;
   protected isScrollingDown = false;
@@ -49,10 +57,11 @@ export class NavBarComponent implements OnInit {
   protected isMobile = false;
   protected visible: boolean = false;
   protected isArabic = false;
+  protected isHomePage: boolean = false;
 
   ngOnInit(): void {
+    this.checkHomePageState();
     this.isArabic= this.translateService.currentLanguage ==='ar';
-   console.log(this.translateService.currentLanguage ==='ar')
    this.translateService.languageChange$.subscribe((lang)=>{
     if(lang==='ar')
     {
@@ -70,6 +79,15 @@ export class NavBarComponent implements OnInit {
     window.addEventListener('resize', () => {
       this.isMobile = window.innerWidth <= 768;
     });
+
+    //check if this home page
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.checkHomePageState();
+    });
+
+
   }
 
   @HostListener('window:scroll', [])
@@ -77,6 +95,19 @@ export class NavBarComponent implements OnInit {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     this.isScrollingDown = scrollTop > this.lastScrollTop;
     this.isAtTop = scrollTop === 0;
+  }
+
+  private checkHomePageState(): void {
+    let currentRoute = this.activatedRoute;
+
+    // Traverse through all child routes
+    while (currentRoute.firstChild) {
+      currentRoute = currentRoute.firstChild;
+    }
+
+    // Check if the final child route is the home route (path: '')
+    this.isHomePage = currentRoute.snapshot.routeConfig?.path === '';
+    this.cd.markForCheck();
   }
 
   onLanguageChange(event: any) {

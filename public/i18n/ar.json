@@ -67,6 +67,30 @@
 "getInTouch":"تواصل معنا",
 "copyright": " جميع الحقوق محفوظة."
 
+  },
+  "product": {
+    "mainImage": "الصورة الرئيسية",
+    "thumbnail": "صورة مصغرة للمنتج",
+    "title": "عنوان المنتج",
+    "rating": "التقييم",
+    "price": "السعر",
+    "description": "الوصف",
+    "size": "الحجم",
+    "quantity": "الكمية",
+    "addToCart": "أضف إلى السلة",
+    "buyNow": "اشتريه الآن",
+    "reviews": "المراجعات",
+    "clientReviews": "تقييمات العملاء",
+    "writeReview": "اكتب مراجعة",
+    "yourRating": "تقييمك",
+    "yourReview": "مراجعتك",
+    "submitReview": "إرسال المراجعة",
+    "ingredients": "المكونات",
+    "howToUse": "طريقة الاستخدام",
+    "writeReviewPlaceholder": "اكتب مراجعتك هنا...",
+    "Related": "منتجات ذات صلة"
+
   }
+
 
   }

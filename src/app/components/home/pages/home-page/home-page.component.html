@@ -33,9 +33,9 @@
       data-aos-offset="100"
 
 >
-        <p-carousel [value]="products" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions" [circular]="true" autoplayInterval="6000">
+        <p-carousel [value]="bestProduct()" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions" [circular]="true" autoplayInterval="6000">
           <ng-template let-product pTemplate="item">
-            <div class="product-card cursor-pointer" (click)="openProductDetails()">
+            <div class="product-card cursor-pointer" (click)="openProductDetails(product.id)">
               <!-- Best Seller Badge -->
               <div *ngIf="product.isBestSeller" class="best-seller-badge">BEST SELLER</div>
 
@@ -43,20 +43,20 @@
       <div class="image-slider-container">
         <div class="image-wrapper">
           <!-- Default Image -->
-          <img [src]="product.image"
-               [alt]="product.name"
+          <img [src]="product.images[0]"
+               [alt]="product.nameEn"
                class="product-image default-image">
 
           <!-- Hover Image -->
-          <img [src]="product.hoverImage"
-               [alt]="product.name"
+          <img [src]="product.images[1]"
+               [alt]="product.nameEn"
                class="product-image hover-image">
         </div>
       </div>
 
               <!-- Product Details -->
               <div class="product-info">
-                <h3 class="product-name"   pTooltip="{{ product.name.length > 20 ? (product.name | translate) : '' }}"                  >  {{ getTruncatedTitle(product.name | translate) }}
+                <h3 class="product-name"  >  {{ getTruncatedTitle(product.nameEn ) }}
                 </h3>
 
                 <!-- Rating -->
@@ -100,7 +100,7 @@
   <div class="img-box" data-aos="fade-up"
   data-aos-easing="ease-in-sine"
   data-aos-duration="1000"
-  data-aos-offset="100">
+  data-aos-offset="100" [routerLink]="[item.route]">
             <img [src]="item.src" alt="description" loading="lazy" class="w-full"/>
             <div class="content-box" >
               <h2 (click)="Categorydetails(item.name)" class=" text-white text-5xl font-bold text-shadow-md">

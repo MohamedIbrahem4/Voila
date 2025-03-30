@@ -1,72 +1,263 @@
-<section class="product-container w-full">
-  <div class="product-images w-2/6">
-    <div class="image-wrapper">
-      <img
-        [src]="mainImage"
-        [alt]="product.name"
-        class="main-image"
-        appImageZoom
-        [zoomFactor]="2"
-        [@slideFade]="animationState"
-      />
-    </div>
-    <div class="thumbnail-wrapper">
-      <div class="thumbnail-container" #thumbnailContainer>
-        @for (thumbnail of product.images; track $index) {
+<section>
+  <div class="product-container w-full">
+    <div class="product-images w-2/6">
+      <div class="image-wrapper">
         <img
-          [src]="thumbnail"
-          alt="Product thumbnail"
-          class="thumbnail"
-          (click)="changeImage(thumbnail, $index)"
-          [class.active-thumbnail]="thumbnail === mainImage"
+          [src]="mainImage"
+          [alt]="product.nameEn"
+          class="main-image"
+          appImageZoom
+          [zoomFactor]="2"
+          [@slideFade]="animationState"
         />
+      </div>
+      <div class="thumbnail-wrapper">
+        <div class="thumbnail-container" #thumbnailContainer>
+          @for (thumbnail of product.images; track $index) {
+          <img
+            [src]="thumbnail"
+            alt="Product thumbnail"
+            class="thumbnail"
+            (click)="changeImage(thumbnail, $index)"
+            [class.active-thumbnail]="thumbnail === mainImage"
+          />
 
+          }
+        </div>
+      </div>
+    </div>
+    <div class="product-details w-3/6">
+      <h1 class="product-title">
+        @if(isArabic) {
+        {{ product.nameAr }}
+        }@else {
+        {{ product.nameEn }}
         }
+      </h1>
+      <!-- rating -->
+      <p-rating [(ngModel)]="ratingvalue" [readonly]="true" class="w-2/4" />
+
+      @if(product.oldPrice) {
+      <div class="flex gap-8 items-center">
+        <span class="line-through text-gray-500 text-2xl">{{
+          product.oldPrice | currency
+        }}</span>
+        <p class="product-price">{{ product.price | currency }}</p>
+      </div>
+
+      <!-- <span class="line-through text-gray-500">{{ product.price | currency }}</span>
+        <span class="text-red-600 font-bold">{{ product.discountprice | currency }}</span> -->
+      }@else {
+      <p class="product-price">{{ product.price | currency }}</p>
+
+      }
+      <div class="product-description">
+        @if(isArabic) {
+        {{ product.descriptionAr }}
+        }@else {
+        {{ product.descriptionEn }}
+        }
+      </div>
+      <div class="product-size">
+        <div class="font-bold">{{ "product.size" | translate }}:</div>
+        <div>{{ product.size }}</div>
+      </div>
+      <div class="quantity-selector w-32">
+        <div class="font-bold">{{ "product.quantity" | translate }}:</div>
+
+        <p-inputnumber
+          [(ngModel)]="productQuantity"
+          [showButtons]="true"
+          buttonLayout="horizontal"
+          inputId="horizontal"
+          [inputStyle]="{ width: '3rem' }"
+        >
+          <ng-template #incrementbuttonicon>
+            <span class="pi pi-plus"></span>
+          </ng-template>
+          <ng-template #decrementbuttonicon>
+            <span class="pi pi-minus"></span>
+          </ng-template>
+        </p-inputnumber>
+      </div>
+      <div class="flex flex-col gap-4">
+        <button
+          class="cta-button"
+          [ngClass]="{ 'shake-horizontal': isShaking }"
+          (click)="addToCart()"
+        >
+          {{ "product.addToCart" | translate }}
+        </button>
+        <button class="buy-button" (click)="addToCart()">
+          {{ "product.buyNow" | translate }}
+        </button>
       </div>
     </div>
   </div>
-
-  <div class="product-details w-3/6">
-    <h1 class="product-title">{{ product.name }}</h1>
-    <!-- rating -->
-    <p-rating [(ngModel)]="ratingvalue" [readonly]="true" class="w-2/4" />
-
-    <p class="product-price">{{ product.price | currency }}</p>
-
-    <div class="product-description">
-      {{ product.description }}
-    </div>
-    <div class="product-size">
-      <div class="font-bold">Size :</div>
-      <div>200 Ml</div>
-    </div>
-    <div class="quantity-selector w-32">
-      <div class="font-bold">Quantity :</div>
-
-      <p-inputnumber
-        [(ngModel)]="productQuantity"
-        [showButtons]="true"
-        buttonLayout="horizontal"
-        inputId="horizontal"
-        [inputStyle]="{ width: '3rem' }"
-      >
-        <ng-template #incrementbuttonicon>
-          <span class="pi pi-plus"></span>
+  <!-- discription and rating view -->
+  <div class="reviews">
+    <p-tabView>
+      <p-tabPanel [header]="'product.description' | translate">
+        <ng-template pTemplate="content" class="">
+          <div class="description border shadow-sm flex-grow">
+            <div class="ingredients">
+              <div class="title">{{ "product.ingredients" | translate }}:</div>
+              <div class="content">
+                @if(isArabic) {
+                {{ product.ingredientsAr }}
+                }@else {
+                {{ product.ingredientsEn }}
+                }
+              </div>
+            </div>
+            <hr class="border border-gray-300 my-3" />
+            <div class="ingredients">
+              <div class="title">{{ "product.howToUse" | translate }}:</div>
+              <div class="content">
+                @if(isArabic) {
+                {{ product.usageAr }}
+                }@else {
+                {{ product.usageEn }}
+                }
+              </div>
+            </div>
+          </div>
         </ng-template>
-        <ng-template #decrementbuttonicon>
-          <span class="pi pi-minus"></span>
+      </p-tabPanel>
+      <p-tabPanel [header]="'product.reviews' | translate">
+        <ng-template pTemplate="content">
+          <div class=" border shadow-sm flex-grow p-4">
+            <!-- Reviews List -->
+            <div class="mb-5">
+              <h3 class="font-bold">
+                {{ "product.clientReviews" | translate }} ({{ reviews.length }})
+              </h3>
+              <div class="grid gap-4">
+                @for (review of reviews; track $index) {
+                <div class="col-12 md:col-6 lg:col-4">
+                  <p-card>
+                    <div class="flex align-items-center mb-2">
+                      <p-rating
+                        [ngModel]="review.rating"
+                        [readonly]="true"
+                      ></p-rating>
+                      <!-- <span class="text-500 ml-2">{{ review.date | date }}</span> -->
+                    </div>
+                    <p class="m-0">{{ review.comment }}</p>
+                    <p class="font-semibold mt-2">{{ review.author }}</p>
+                  </p-card>
+                </div>
+                }
+              </div>
+            </div>
+            <hr class="border border-gray-300 my-3" />
+
+            <!-- Review Form -->
+            <div class="p-4 border-round surface-card">
+              <h3 class="mb-4 text-xl font-bold">
+                {{ "product.writeReview" | translate }}
+              </h3>
+              <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+                <div class="field mb-4">
+                  <label class="block mb-2">{{
+                    "product.yourRating" | translate
+                  }}</label>
+                  <p-rating formControlName="rating"></p-rating>
+                </div>
+
+                <div class="field mb-4">
+                  <label class="block mb-2">{{
+                    "product.yourReview" | translate
+                  }}</label>
+                  <textarea
+                    formControlName="comment"
+                    pInputTextarea
+                    rows="5"
+                    [placeholder]="'product.writeReviewPlaceholder' | translate"
+                    class="w-full border p-2"
+                  ></textarea>
+                </div>
+
+                <button
+                  pButton
+                  type="submit"
+                  [label]="'product.submitReview' | translate"
+                  class="w-full"
+                  [disabled]="!reviewForm.valid"
+                ></button>
+              </form>
+            </div>
+          </div>
         </ng-template>
-      </p-inputnumber>
-    </div>
-    <div class="flex flex-col gap-4">
-      <button
-        class="cta-button"
-        [ngClass]="{ 'shake-horizontal': isShaking }"
-        (click)="addToCart()"
-      >
-        Add to Cart
-      </button>
-      <button class="buy-button" (click)="addToCart()">Buy it now</button>
-    </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+
+  <!-- related products  -->
+  <div class="carsouel">
+    <div class="text-2xl font-bold flex justify-center move-up-bootom">{{"product.Related"|translate}}</div>
+    <p-carousel
+      [value]="relatedProducts()"
+      [numVisible]="4"
+      [numScroll]="1"
+      [responsiveOptions]="responsiveOptions"
+      [circular]="true"
+      autoplayInterval="6000"
+    >
+      <ng-template let-product let-i="index" pTemplate="item">
+        <div class="product-card cursor-pointer" (click)="openProductDetails(product.id)"
+        >
+          <!-- Image Container with Slide Animation -->
+          <div class="image-slider-container">
+            <div class="image-wrapper">
+              <!-- Default Image -->
+              <img
+                [src]="product.images[0]"
+                [alt]="product.nameEn"
+                class="product-image default-image"
+              />
+
+              <!-- Hover Image -->
+              <img
+                [src]="product.images[1]"
+                [alt]="product.nameEn"
+                class="product-image hover-image"
+              />
+            </div>
+          </div>
+
+          <!-- Product Details -->
+          <div class="product-info">
+            <h3
+              class="product-name"
+              pTooltip="{{
+                product.nameEn.length > 20 && isArabic
+                  ? product.nameAr
+                  : product.nameEn
+              }}"
+            >
+              {{
+                getTruncatedTitle(isArabic ? product.nameAr : product.nameEn)
+              }}
+            </h3>
+
+            <!-- Rating -->
+            <p-rating
+              [(ngModel)]="product.rating"
+              [readonly]="true"
+              styleClass="product-rating"
+            ></p-rating>
+
+            <!-- Price -->
+            <div class="price-container">
+              <span class="current-price">{{ product.price | currency }}</span>
+              <span *ngIf="product.oldPrice" class="old-price">{{
+                product.oldPrice | currency
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { SliderComponent } from '../../../../shared/pages/slider/slider.component';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,9 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ProductService } from '../../../products/services/product.service';
+import { Product } from '../../../products/types/product';
 
 @Component({
   selector: 'app-home-page',
@@ -20,6 +22,7 @@ import { Router } from '@angular/router';
     FormsModule,
     ButtonModule,
     TooltipModule,
+    RouterLink
 
   ],
   templateUrl: './home-page.component.html',
@@ -27,14 +30,15 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
   private   route =inject(Router);
+  private productservices = inject(ProductService);
+  private products=signal<Product[]>([]);
 
   protected translate = inject(CustomTranslateService);
   protected homeservices = inject(HomeService);
   protected isMobile=false;
   protected category: any[] = [];
   protected hoveredProduct: number | null = null;
-  protected products:any[]=[];
-
+  protected bestProduct=computed(()=>this.products());
 
 
   protected responsiveOptions = [
@@ -59,12 +63,18 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     Aos.init();
     this.category=this.homeservices.categories;
-    this.products=this.homeservices.products;
     this.isMobile = window.innerWidth < 768;
     window.addEventListener('resize', () => {
     this.isMobile = window.innerWidth <= 768;
     });
+    this.getBestProduct();
 
+  }
+  getBestProduct()
+  {
+    this.productservices.getBestRatedProducts().subscribe((data)=>{
+      this.products.set(data);
+    })
   }
   Categorydetails(arg0: any) {
     throw new Error('Method not implemented.');
@@ -77,9 +87,9 @@ export class HomePageComponent implements OnInit {
     if (!title) return ''; // Handle empty title
     return title.length > 20 ? title.substring(0, 20) + '...' : title;
   }
-  openProductDetails()
+  openProductDetails(id:number)
   {
-    this.route.navigate(['/products/productdetails'])
+    this.route.navigate(['/productdetails',id])
   }
 
 }

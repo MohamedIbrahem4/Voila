@@ -66,7 +66,31 @@
 "instagram": "Instagram",
 "getInTouch":"GET IN TOUCH",
 "copyright": ". All rights reserved."
+  },
+  "product": {
+    "mainImage": "Main Image",
+    "thumbnail": "Product thumbnail",
+    "title": "Product Title",
+    "rating": "Rating",
+    "price": "Price",
+    "description": "Description",
+    "size": "Size",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy it now",
+    "reviews": "Reviews",
+    "clientReviews": "Client Reviews",
+    "writeReview": "Write a Review",
+    "yourRating": "Your Rating",
+    "yourReview": "Your Review",
+    "submitReview": "Submit Review",
+    "ingredients": "Ingredients",
+    "howToUse": "How To Use",
+    "writeReviewPlaceholder": "Write your review here...",
+    "Related": "Related Products"
+
   }
+
 
 
 

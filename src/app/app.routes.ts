@@ -10,7 +10,7 @@ export const routes: Routes = [
         loadChildren: () => import('./components/home/home.routes').then(m => m.homeRoutes)
       },
       {
-        path: 'products',
+        path: '',
         loadChildren: () => import('./components/products/products.routes').then(m => m.productRoutes)
       },
     ]

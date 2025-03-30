@@ -12,7 +12,9 @@
     "En":"English",
     "Ar":"Arabic",
     "Settings":"Settings",
-    "Dashboard":"Dashboard"
+    "Dashboard":"Dashboard",
+    "Home":"Home"
+
 
 
 
@@ -87,7 +89,8 @@
     "ingredients": "Ingredients",
     "howToUse": "How To Use",
     "writeReviewPlaceholder": "Write your review here...",
-    "Related": "Related Products"
+    "Related": "Related Products",
+    "bestSeller":"BEST SELLER"
 
   }
 

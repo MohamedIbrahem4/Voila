@@ -1,0 +1,97 @@
+
+{
+  "navbar":{
+    "SKIN": "Skin",
+    "HAIR": "Hair",
+    "BODY": "Body",
+    "LOGIN": "Login",
+    "Offers":"Offers",
+    "sale":"Sale",
+    "Menu":"Menu",
+    "ChooseLang":"Choose Language",
+    "En":"English",
+    "Ar":"Arabic",
+    "Settings":"Settings",
+    "Dashboard":"Dashboard"
+
+
+
+
+  },
+  "slider":{
+    "s1":{
+      "title1":"Glow Like Never Before",
+      "title2":"Your Skin Deserves the Best",
+      "btn":"More Details"
+
+    },
+    "s2":{
+      "title1":"Nourish Your Body, Elevate Your Care!",
+      "title2":"Indulge in Luxury ",
+      "btn":"Skin Product"
+
+    },
+    "s3":{
+      "title1":"Unlock the Secret to Perfect Locks",
+      "title2":"Luscious Hair, Radiant You ",
+      "btn":"Buy Now"
+
+    }
+  },
+  "home":{
+    "s1":{
+      "discoverVoila": "Discover Voila",
+       "h1":"A PERFECT BLEND OF SCIENCE",
+       "h2":"NATURE",
+       "h3":"AND VISIBLE RESULTS"
+    },
+    "s2":{
+      "head":"At Voila",
+      "body":"we craft skincare that harmonizes clinically proven ingredients with ethically sourced botanicals. Every product is designed to unveil your healthiest, most radiant skin naturally and sustainably."
+    },
+    "s3":{    "title": "Glow. Nourish. Revitalize.",
+    "subtitle": "Skincare, Body Care & Hair Care Designed for Your Unique Beauty."
+    },
+    "BodyCare":"Body Care",
+    "skincare":"Skin Care",
+    "HairCare":"Hair Care"
+
+
+  },
+  "footer":{
+"Adress": " Abu Qir Street, next to Janaklis Central, Janaklis Area, Alexandria, Egypt",
+"companyInfo":"Company Info",
+"followUs":"Follow Us",
+"facebook": "Facebook",
+"instagram": "Instagram",
+"getInTouch":"GET IN TOUCH",
+"copyright": ". All rights reserved."
+  },
+  "product": {
+    "mainImage": "Main Image",
+    "thumbnail": "Product thumbnail",
+    "title": "Product Title",
+    "rating": "Rating",
+    "price": "Price",
+    "description": "Description",
+    "size": "Size",
+    "quantity": "Quantity",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy it now",
+    "reviews": "Reviews",
+    "clientReviews": "Client Reviews",
+    "writeReview": "Write a Review",
+    "yourRating": "Your Rating",
+    "yourReview": "Your Review",
+    "submitReview": "Submit Review",
+    "ingredients": "Ingredients",
+    "howToUse": "How To Use",
+    "writeReviewPlaceholder": "Write your review here...",
+    "Related": "Related Products"
+
+  }
+
+
+
+
+}
